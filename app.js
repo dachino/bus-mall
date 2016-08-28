@@ -23,6 +23,8 @@ imgArr.push(new ImageCons('wine-glass', 'img/wine-glass.jpg'));
 var imgOneEl = document.getElementById('imgOne');
 var imgTwoEl = document.getElementById('imgTwo');
 var imgThreeEl = document.getElementById('imgThree');
+var imgInd = [] //Random image array indices for the three images
+
 
 //Contructor function to create image objects
 function ImageCons(name, path) {
@@ -31,11 +33,23 @@ function ImageCons(name, path) {
   this.votes = 0;
 }
 
-//Random math generator for array indices
-function ArrInd(arrayLength) {
-  return Math.floor(Math.random() * arrayLength);
+//Random array index generator for three images
+function ranArrInd(arrayLength) {
+  imgInd.push(Math.floor(Math.random() * arrayLength));
+  var num2 = (Math.floor(Math.random() * arrayLength));
+  while (num2 === imgInd[0]) {
+    num2 = (Math.floor(Math.random() * arrayLength));
+  }
+  imgInd.push(num2);
+  var num3 = (Math.floor(Math.random() * arrayLength));
+  while (num3 === imgInd[0] || num3 === imgInd[1]) {
+    num3 = (Math.floor(Math.random() * arrayLength));
+  }
+  imgInd.push(num3);
 }
 
-imgOneEl.src = imgArr[ArrInd(imgArr.length)].path;
-imgTwoEl.src = imgArr[ArrInd(imgArr.length)].path;
-imgThreeEl.src = imgArr[ArrInd(imgArr.length)].path;
+//Adding img src to the three images
+ranArrInd(imgArr.length);
+imgOneEl.src = imgArr[imgInd[0]].path;
+imgTwoEl.src = imgArr[imgInd[1]].path;
+imgThreeEl.src = imgArr[imgInd[2]].path;
