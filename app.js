@@ -68,11 +68,12 @@ function voting(event) {
       imgArr[i].votes += 1;
     }
   }
-  console.table(imgArr);
-  console.log(voteTracker);
   if (voteTracker > 0) {
     refresh();
   } else {
+    imgOneEl.classList.add('noHover');
+    imgTwoEl.classList.add('noHover');
+    imgThreeEl.classList.add('noHover');
     disableVoting();
     genResults();
   }

@@ -17,10 +17,23 @@ img {
 img:hover {
   box-shadow: 10px 10px 25px 5px rgb(51, 51, 51);
 }
-table{
+
+table {
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
   border-collapse: collapse;
 }
 
 th, td {
   border: 1px solid black;
+  padding: 2px 8px;
+}
+
+th {
+  background-color: rgb(157, 214, 246);
+}
+
+img.noHover {
+  box-shadow: 5px 5px 15px rgb(51, 51, 51);
 }
