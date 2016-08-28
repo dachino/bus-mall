@@ -25,6 +25,8 @@ var imgTwoEl = document.getElementById('imgTwo');
 var imgThreeEl = document.getElementById('imgThree');
 var imgInd = []; //Random image array indices for the three images
 var voteTracker = 15; //Total amount of votes allows
+var resultsTableEl = document.getElementById('results');
+
 
 //Contructor function to create image objects
 function ImageCons(name, path) {
@@ -72,6 +74,7 @@ function voting(event) {
     refresh();
   } else {
     disableVoting();
+    genResults();
   }
 }
 
@@ -97,4 +100,24 @@ function disableVoting() {
   imgTwoEl.removeEventListener('click', voting);
   imgThreeEl.removeEventListener('click', voting);
   alert('Thank you for your participation, you are no longer needed.');
+}
+
+//Function to generate results
+function genResults() {
+  var trHeaderEl = document.createElement('tr');
+  var thEl = [document.createElement('th'), document.createElement('th')];
+  thEl[0].textContent = 'Product Name';
+  thEl[1].textContent = 'Vote Count';
+  trHeaderEl.appendChild(thEl[0]);
+  trHeaderEl.appendChild(thEl[1]);
+  resultsTableEl.appendChild(trHeaderEl);
+  for (var i = 0; i < imgArr.length; i++) {
+    var trEl = document.createElement('tr');
+    var tdEl = [document.createElement('td'), document.createElement('td')];
+    tdEl[0].textContent = imgArr[i].name;
+    tdEl[1].textContent = imgArr[i].votes;
+    trEl.appendChild(tdEl[0]);
+    trEl.appendChild(tdEl[1]);
+    resultsTableEl.appendChild(trEl);
+  }
 }
