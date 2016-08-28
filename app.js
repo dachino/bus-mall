@@ -24,7 +24,7 @@ var imgOneEl = document.getElementById('imgOne');
 var imgTwoEl = document.getElementById('imgTwo');
 var imgThreeEl = document.getElementById('imgThree');
 var imgInd = []; //Random image array indices for the three images
-
+var voteTracker = 15; //Total amount of votes allows
 
 //Contructor function to create image objects
 function ImageCons(name, path) {
@@ -60,13 +60,19 @@ imgThreeEl.name = imgArr[imgInd[2]].name;
 
 //Function to increment the vote counter
 function voting(event) {
+  voteTracker -= 1;
   for (var i = 0; i < imgArr.length; i++) {
     if (event.target.name === imgArr[i].name) {
       imgArr[i].votes += 1;
     }
   }
   console.table(imgArr);
-  refresh();
+  console.log(voteTracker);
+  if (voteTracker > 0) {
+    refresh();
+  } else {
+    disableVoting();
+  }
 }
 
 //Function to refresh the images
@@ -84,3 +90,11 @@ function refresh() {
 imgOneEl.addEventListener('click', voting);
 imgTwoEl.addEventListener('click', voting);
 imgThreeEl.addEventListener('click', voting);
+
+//Function to disable voting
+function disableVoting() {
+  imgOneEl.removeEventListener('click', voting);
+  imgTwoEl.removeEventListener('click', voting);
+  imgThreeEl.removeEventListener('click', voting);
+  alert('Thank you for your participation, you are no longer needed.');
+}
