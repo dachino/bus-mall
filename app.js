@@ -23,7 +23,7 @@ imgArr.push(new ImageCons('wine-glass', 'img/wine-glass.jpg'));
 var imgOneEl = document.getElementById('imgOne');
 var imgTwoEl = document.getElementById('imgTwo');
 var imgThreeEl = document.getElementById('imgThree');
-var imgInd = [] //Random image array indices for the three images
+var imgInd = []; //Random image array indices for the three images
 
 
 //Contructor function to create image objects
@@ -35,6 +35,7 @@ function ImageCons(name, path) {
 
 //Random array index generator for three images
 function ranArrInd(arrayLength) {
+  imgInd = [];
   imgInd.push(Math.floor(Math.random() * arrayLength));
   var num2 = (Math.floor(Math.random() * arrayLength));
   while (num2 === imgInd[0]) {
@@ -53,3 +54,33 @@ ranArrInd(imgArr.length);
 imgOneEl.src = imgArr[imgInd[0]].path;
 imgTwoEl.src = imgArr[imgInd[1]].path;
 imgThreeEl.src = imgArr[imgInd[2]].path;
+imgOneEl.name = imgArr[imgInd[0]].name;
+imgTwoEl.name = imgArr[imgInd[1]].name;
+imgThreeEl.name = imgArr[imgInd[2]].name;
+
+//Function to increment the vote counter
+function voting(event) {
+  for (var i = 0; i < imgArr.length; i++) {
+    if (event.target.name === imgArr[i].name) {
+      imgArr[i].votes += 1;
+    }
+  }
+  console.table(imgArr);
+  refresh();
+}
+
+//Function to refresh the images
+function refresh() {
+  ranArrInd(imgArr.length);
+  imgOneEl.src = imgArr[imgInd[0]].path;
+  imgTwoEl.src = imgArr[imgInd[1]].path;
+  imgThreeEl.src = imgArr[imgInd[2]].path;
+  imgOneEl.name = imgArr[imgInd[0]].name;
+  imgTwoEl.name = imgArr[imgInd[1]].name;
+  imgThreeEl.name = imgArr[imgInd[2]].name;
+}
+
+//Event Listener to keep track of image clicks
+imgOneEl.addEventListener('click', voting);
+imgTwoEl.addEventListener('click', voting);
+imgThreeEl.addEventListener('click', voting);
