@@ -50,3 +50,7 @@ th {
 img.noHover {
   box-shadow: 5px 5px 15px rgb(51, 51, 51);
 }
+
+tr.totalVotes {
+  font-weight: bold;
+}

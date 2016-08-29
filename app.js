@@ -117,6 +117,7 @@ function resetButton() {
 function genResults() {
   var trHeaderEl = document.createElement('tr');
   var thEl = [document.createElement('th'), document.createElement('th')];
+  var tempSum = 0;
   thEl[0].textContent = 'Product Name';
   thEl[1].textContent = 'Vote Count';
   trHeaderEl.appendChild(thEl[0]);
@@ -130,5 +131,14 @@ function genResults() {
     trEl.appendChild(tdEl[0]);
     trEl.appendChild(tdEl[1]);
     resultsTableEl.appendChild(trEl);
+    tempSum += imgArr[i].votes;
   }
+  var trFooterEl = document.createElement('tr');
+  trFooterEl.classList.add('totalVotes');
+  var tdFooterEl = [document.createElement('td'), document.createElement('td')];
+  tdFooterEl[0].textContent = 'Total Votes';
+  tdFooterEl[1].textContent = tempSum;
+  trFooterEl.appendChild(tdFooterEl[0]);
+  trFooterEl.appendChild(tdFooterEl[1]);
+  resultsTableEl.appendChild(trFooterEl);
 }
