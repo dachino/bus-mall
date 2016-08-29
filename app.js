@@ -26,6 +26,7 @@ var imgThreeEl = document.getElementById('imgThree');
 var imgInd = []; //Random image array indices for the three images
 var voteTracker = 15; //Total amount of votes allows
 var resultsTableEl = document.getElementById('results');
+var mainEl = document.getElementById('main');
 
 
 //Contructor function to create image objects
@@ -75,6 +76,7 @@ function voting(event) {
     imgTwoEl.classList.add('noHover');
     imgThreeEl.classList.add('noHover');
     disableVoting();
+    resetButton();
     genResults();
   }
 }
@@ -101,6 +103,14 @@ function disableVoting() {
   imgTwoEl.removeEventListener('click', voting);
   imgThreeEl.removeEventListener('click', voting);
   alert('Thank you for your participation, you are no longer needed.');
+}
+
+//Function to make a reset button
+function resetButton() {
+  var buttonEl = document.createElement('a');
+  buttonEl.textContent = 'RESET';
+  buttonEl.href = 'index.html';
+  mainEl.appendChild(buttonEl);
 }
 
 //Function to generate results
