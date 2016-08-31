@@ -27,6 +27,7 @@ var imgInd = []; //Random image array indices for the three images
 var voteTracker = 15; //Total amount of votes allows
 var resultsTableEl = document.getElementById('results');
 var mainEl = document.getElementById('main');
+var ctx = document.getElementById('canvas').getContext('2d');
 
 //Adding img src to the three images
 refresh();
