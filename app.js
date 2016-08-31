@@ -28,6 +28,8 @@ var voteTracker = 15; //Total amount of votes allows
 var resultsTableEl = document.getElementById('results');
 var mainEl = document.getElementById('main');
 
+//Adding img src to the three images
+refresh();
 
 //Contructor function to create image objects
 function ImageCons(name, path) {
@@ -51,15 +53,6 @@ function ranArrInd(arrayLength) {
   }
   imgInd.push(num3);
 }
-
-//Adding img src to the three images
-ranArrInd(imgArr.length);
-imgOneEl.src = imgArr[imgInd[0]].path;
-imgTwoEl.src = imgArr[imgInd[1]].path;
-imgThreeEl.src = imgArr[imgInd[2]].path;
-imgOneEl.name = imgArr[imgInd[0]].name;
-imgTwoEl.name = imgArr[imgInd[1]].name;
-imgThreeEl.name = imgArr[imgInd[2]].name;
 
 //Function to increment the vote counter
 function voting(event) {
