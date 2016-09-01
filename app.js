@@ -27,6 +27,7 @@ var imgInd = []; //Random image array indices for the three images
 var voteTracker = 15; //Total amount of votes allows
 var resultsTableEl = document.getElementById('results');
 var mainEl = document.getElementById('main');
+var ctx = document.getElementById('canvas').getContext('2d');
 
 //Adding img src to the three images
 refresh();
@@ -70,7 +71,8 @@ function voting(event) {
     imgThreeEl.classList.add('noHover');
     disableVoting();
     resetButton();
-    genResults();
+    genTableResults();
+    genChartResults();
   }
 }
 
@@ -106,8 +108,8 @@ function resetButton() {
   mainEl.appendChild(buttonEl);
 }
 
-//Function to generate results
-function genResults() {
+//Function to generate table results
+function genTableResults() {
   var trHeaderEl = document.createElement('tr');
   var thEl = [document.createElement('th'), document.createElement('th')];
   var tempSum = 0;
@@ -134,4 +136,70 @@ function genResults() {
   trFooterEl.appendChild(tdFooterEl[0]);
   trFooterEl.appendChild(tdFooterEl[1]);
   resultsTableEl.appendChild(trFooterEl);
+}
+
+//Function to generate chart results
+function genChartResults() {
+  var chartLabels = [];
+  var chartValues = [];
+  for (var i = 0; i < imgArr.length; i++) {
+    chartLabels[i] = imgArr[i].name;
+    chartValues[i] = imgArr[i].votes;
+  }
+
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: chartLabels,
+      datasets: [{
+        label: '# of Votes',
+        data: chartValues,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+  });
 }
