@@ -44,6 +44,7 @@ section {
 table {
   float: left;
   border-collapse: collapse;
+  table-layout: fixed;
 }
 
 th, td {
@@ -59,7 +60,7 @@ img.noHover {
   box-shadow: 5px 5px 15px rgb(51, 51, 51);
 }
 
-tr.totalVotes {
+table > p {
   font-weight: bold;
 }
 

@@ -115,36 +115,36 @@ function resetButton() {
 //Function to generate table results
 function genTableResults() {
   var trHeaderEl = document.createElement('tr');
-  var thEl = [document.createElement('th'), document.createElement('th'), document.createElement('th')];
+  var thEl = [document.createElement('th'), document.createElement('th'),
+    document.createElement('th'), document.createElement('th')];
   var tempSum = 0;
   thEl[0].textContent = 'Product Name';
   thEl[1].textContent = 'View Count';
   thEl[2].textContent = 'Vote Count';
+  thEl[3].textContent = '% of Votes When Viewed';
   trHeaderEl.appendChild(thEl[0]);
   trHeaderEl.appendChild(thEl[1]);
   trHeaderEl.appendChild(thEl[2]);
+  trHeaderEl.appendChild(thEl[3]);
   resultsTableEl.appendChild(trHeaderEl);
   for (var i = 0; i < imgArr.length; i++) {
     var trEl = document.createElement('tr');
-    var tdEl = [document.createElement('td'), document.createElement('td'), document.createElement('td')];
+    var tdEl = [document.createElement('td'), document.createElement('td'),
+      document.createElement('td'), document.createElement('td')];
     tdEl[0].textContent = imgArr[i].name;
     tdEl[1].textContent = imgArr[i].views;
     tdEl[2].textContent = imgArr[i].votes;
+    tdEl[3].textContent = parseFloat((100 * (imgArr[i].votes / imgArr[i].views)).toFixed(2)) + '%';
     trEl.appendChild(tdEl[0]);
     trEl.appendChild(tdEl[1]);
     trEl.appendChild(tdEl[2]);
+    trEl.appendChild(tdEl[3]);
     resultsTableEl.appendChild(trEl);
     tempSum += imgArr[i].votes;
   }
-  var trFooterEl = document.createElement('tr');
-  trFooterEl.classList.add('totalVotes');
-  var tdFooterEl = [document.createElement('td'), document.createElement('td')];
-  tdFooterEl[0].textContent = 'Total Votes';
-  tdFooterEl[1].colSpan = 2;
-  tdFooterEl[1].textContent = tempSum;
-  trFooterEl.appendChild(tdFooterEl[0]);
-  trFooterEl.appendChild(tdFooterEl[1]);
-  resultsTableEl.appendChild(trFooterEl);
+  var totalVotesEl = document.createElement('p');
+  totalVotesEl.textContent = 'Total Votes: ' + tempSum;
+  resultsTableEl.appendChild(totalVotesEl);
 }
 
 //Function to generate chart results
