@@ -122,6 +122,7 @@ function genTableResults() {
   thEl[1].textContent = 'View Count';
   thEl[2].textContent = 'Vote Count';
   thEl[3].textContent = '% of Votes When Viewed';
+  thEl[3].id = 'thirdCol';
   trHeaderEl.appendChild(thEl[0]);
   trHeaderEl.appendChild(thEl[1]);
   trHeaderEl.appendChild(thEl[2]);
@@ -134,7 +135,12 @@ function genTableResults() {
     tdEl[0].textContent = imgArr[i].name;
     tdEl[1].textContent = imgArr[i].views;
     tdEl[2].textContent = imgArr[i].votes;
-    tdEl[3].textContent = parseFloat((100 * (imgArr[i].votes / imgArr[i].views)).toFixed(2)) + '%';
+    tdEl[3].textContent = parseFloat((100 * (imgArr[i].votes / imgArr[i].views)).toFixed(2));
+    if (isNaN(tdEl[3].textContent)) {
+      tdEl[3].textContent = 'Not Shown';
+    } else {
+      tdEl[3].textContent += '%';
+    }
     trEl.appendChild(tdEl[0]);
     trEl.appendChild(tdEl[1]);
     trEl.appendChild(tdEl[2]);
