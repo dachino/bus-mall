@@ -128,12 +128,19 @@ function storeData() {
   }
 }
 
+//Function to clear local storage data
+function clearLocalStorage() {
+  localStorage.clear();
+  alert('Previous vote count and view count have been cleared');
+  location.reload();
+}
+
 //Function to make a reset and clear button
 function addButton() {
   resetButtonEl.textContent = 'RESET';
   clearButtonEl.textContent = 'CLEAR';
   resetButtonEl.href = 'index.html';
-  clearButtonEl.addEventListener('click', localStorage.clear);
+  clearButtonEl.addEventListener('click', clearLocalStorage);
   buttonsEl.appendChild(resetButtonEl);
   buttonsEl.appendChild(clearButtonEl);
 }
