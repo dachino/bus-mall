@@ -131,7 +131,7 @@ function storeData() {
 //Function to clear local storage data
 function clearLocalStorage() {
   localStorage.clear();
-  alert('Previous vote count and view count have been cleared');
+  alert('Votes and views have been cleared');
   location.reload();
 }
 
